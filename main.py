@@ -511,7 +511,7 @@ def process_url(message):
     if not is_valid_url:
         bot.send_message(
             message.chat.id,
-            "❌ Отправьте корректную ссылку на пост в ВК/Telegram или короткое видео!",
+            "❌ Отправь корректную ссылку на пост в Telegram или короткое видео!",
         )
         
         return
@@ -548,20 +548,20 @@ def handle_url_moderation(call):
         if update_montion_tickets(user_id):
             bot.send_message(
                 user_id, 
-                "✅ Ваша ссылка одобрена! Начислено 5 билетов."
+                "✅ Твоя ссылка одобрена! Начислено 5 билетов."
             )
             update_user_tickets(user_id, tickets_to_add=5)
         else:
             bot.send_message(
                 user_id, 
-                "✅ Ваша ссылка одобрена, но лимит билетов за ссылку на сегодня исчерпан."
+                "✅ Твоя ссылка одобрена, но лимит билетов за ссылку на сегодня исчерпан."
             )
     
     elif action == 'reject':
         bot.send_message(
             user_id, 
-            "❌ К сожалению, ваша ссылка не прошла модерацию. " +
-            "Попробуйте загрузить другое подтверждение активности."
+            "❌ К сожалению, твоя ссылка не прошла модерацию. " +
+            "Попробуй загрузить другое подтверждение активности."
         )
 
     bot.delete_message(
@@ -728,7 +728,7 @@ def handle_screenshot_moderation(call):
         bot.send_message(
             user_id, 
             "❌ К сожалению, ваш скриншот не прошел модерацию. " +
-            "Попробуйте загрузить другое подтверждение активности."
+            "Попробуй загрузить другое подтверждение активности."
         )
 
     bot.delete_message(
