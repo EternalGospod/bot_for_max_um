@@ -7,7 +7,8 @@ import telegram.ext.filters as filters
 
 from datetime import datetime, date
 
-BOT_TOKEN = '7702064015:AAHkpI7E_xTuo4Wvn7VVp4kNQAObNCS8JH4'
+BOT_TOKEN = '8175257832:AAHq-LHVY19ca8wIU2mq0lycbSrw-ETeewY'
+# BOT_TOKEN = '7702064015:AAHkpI7E_xTuo4Wvn7VVp4kNQAObNCS8JH4'
 bot = TeleBot(BOT_TOKEN)
 
 def create_users_table():
