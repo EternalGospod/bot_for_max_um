@@ -5,10 +5,10 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, ConversationHa
 import telegram.ext.filters as filters
 # from user_save_profiles import *
 
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 BOT_TOKEN = '8175257832:AAHq-LHVY19ca8wIU2mq0lycbSrw-ETeewY'
-# BOT_TOKEN = '7702064015:AAHkpI7E_xTuo4Wvn7VVp4kNQAObNCS8JH4'
+#BOT_TOKEN = '7702064015:AAHkpI7E_xTuo4Wvn7VVp4kNQAObNCS8JH4'
 bot = TeleBot(BOT_TOKEN)
 
 def create_users_table():
@@ -461,7 +461,8 @@ def can_send_url(user_id):
     with sqlite3.connect('bot_users.db') as conn:
         cursor = conn.cursor()
         today = date.today()
-        
+        today = today + timedelta(days=1)
+        # print(today, '2')
         cursor.execute('''   
             SELECT last_day_activity, montion_tickets	 
             FROM users 
@@ -476,9 +477,11 @@ def can_send_url(user_id):
         last_activity_date, montion_tickets_count = result
         
         if last_activity_date is None or last_activity_date != str(today):
+            # print('true str')
             return True
          
         if montion_tickets_count >= 3:
+            # print('false <=4')
             return False
         
     return True
@@ -587,7 +590,8 @@ def update_montion_tickets(user_id):
     with sqlite3.connect('bot_users.db') as conn:
         cursor = conn.cursor()
         today = date.today()
-        
+        today = today + timedelta(days=1)
+        # print(today)
         cursor.execute('''   
             SELECT last_day_activity, montion_tickets	 
             FROM users 
@@ -607,13 +611,15 @@ def update_montion_tickets(user_id):
                     montion_tickets = 1
                 WHERE user_id = ?
             ''', (today, user_id))
+            # print('troll')
 
-        elif montion_tickets_count < 3:
+        elif montion_tickets_count < 4:
             cursor.execute('''
                 UPDATE users 
                 SET montion_tickets = montion_tickets + 1  
                 WHERE user_id = ?
             ''', (user_id,))
+            # print('troll2')
         else:
             return False
         
@@ -669,7 +675,7 @@ def send_screenshot_instruction(message):
 
 ✅Виден получатель и контекст отправки
 
-✅В приглашении есть ссылки на регистрациюи"""
+✅В приглашении есть ссылки на регистрацию"""
 
     bot.send_message(
         message.chat.id,
@@ -765,7 +771,7 @@ def update_post_tickets(user_id):
                     post_tickets = 1
                 WHERE user_id = ?
             ''', (today, user_id))
-            print ( 'хуй')
+            # print ( 'хуй')
 
         elif post_tickets_count < 5:
             cursor.execute('''
