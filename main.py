@@ -402,11 +402,15 @@ def exemple_text(message):
 Я сам был на нем! Там очень круто! Если кто-то сможет пойти, то будет полезно. 
 ✅На мероприятие необходимо зарегистрироваться✅
 
-Выставка в Санкт-Петербурге (8-9 февраля) <a href="https://propostuplenie.ru/navigator/sankt-peterburg?utm_source=friends">Регистрация</a>
-Выставка в Москве (15-16 февраля) <a href="https://propostuplenie.ru/navigator/moskva?utm_source=friends">Регистрация</a>"""
+Выставка в Санкт-Петербурге (8-9 февраля)
+https://propostuplenie.ru/navigator/sankt-peterburg?utm_source=friends
+
+Выставка в Москве (15-16 февраля) 
+https://propostuplenie.ru/navigator/moskva?utm_source=friends"""
     bot.send_message(
         message.chat.id, 
         exemple_text,
+        disable_web_page_preview=True,
         parse_mode='HTML'
     )
 # _____________________________________
