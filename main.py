@@ -392,7 +392,7 @@ def show_prizes(message):
         parse_mode='HTML',
         reply_markup=create_main_menu_keyboard()
     )
-    send_message_to_all_users()
+    # send_message_to_all_users()
 
 @bot.message_handler(func=lambda message: message.text == "Пример приглашения")
 def exemple_text(message):
@@ -796,30 +796,30 @@ def activity_tickets(message):
     activity_tickets_menu(message)
 
 
-def send_message_to_all_users():
-# Получение списка id пользователей
-    conn = sqlite3.connect('bot_users.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT user_id FROM users")
-    user_ids = [row[0] for row in cursor.fetchall()]
-    conn.close()
-    # Предполагается, что у вас есть список id пользователей в базе данных
+# def send_message_to_all_users():
+# # Получение списка id пользователей
+#     conn = sqlite3.connect('bot_users.db')
+#     cursor = conn.cursor()
+#     cursor.execute("SELECT user_id FROM users")
+#     user_ids = [row[0] for row in cursor.fetchall()]
+#     conn.close()
+#     # Предполагается, что у вас есть список id пользователей в базе данных
 
-    for user_id in user_ids:
-        try:
-            text="""Привет 👋🏻
-Возможность выиграть главные призы еще есть 🧡
-Продолжай отправлять приглашения друзьям на форум в Москве 15-16 февраля! 
+#     for user_id in user_ids:
+#         try:
+#             text="""Привет 👋🏻
+# Возможность выиграть главные призы еще есть 🧡
+# Продолжай отправлять приглашения друзьям на форум в Москве 15-16 февраля! 
 
-Скрины и ссылки можно отправлять до 13 февраля 23:59 по мск☝🏻 
-Итоги конкурса подведем в ТГ-канале MAXIMUM 14 февраля в 16:00 по мск: https://t.me/maximum_edtech 
+# Скрины и ссылки можно отправлять до 13 февраля 23:59 по мск☝🏻 
+# Итоги конкурса подведем в ТГ-канале MAXIMUM 14 февраля в 16:00 по мск: https://t.me/maximum_edtech 
 
-Удачи в розыгрыше 🧡💜"""
-            bot.send_message(user_id, text,
-        parse_mode='HTML',
-        disable_web_page_preview=True)
-        except Exception as e:
-            print(f"Ошибка при отправке сообщения пользователю {user_id}: {e}")
+# Удачи в розыгрыше 🧡💜"""
+#             bot.send_message(user_id, text,
+#         parse_mode='HTML',
+#         disable_web_page_preview=True)
+#         except Exception as e:
+#             print(f"Ошибка при отправке сообщения пользователю {user_id}: {e}")
 
 
 bot.session_data = {}
